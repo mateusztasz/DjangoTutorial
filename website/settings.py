@@ -28,10 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
-INSTALLED_APPS = [
-    'music.apps.MusicConfig',
+# Django application definition
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# My own application definition
+PROJECT_APPS = [
+    'music',
+    # 'music.apps.MusicConfig', ''' more precisely '''
+]
+
+# Application definition
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,10 +60,14 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'website.urls'
 
+# Store a absolute path to project
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # define where the template for main page is
+        'DIRS': ['%s/templates/' % PROJECT_DIR ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
