@@ -8,6 +8,9 @@ class MainPageView(generic.ListView):
     context_object_name = 'AppList'
 
     def get_queryset(self):
-        return [app for app in website.settings.INSTALLED_APPS if not "django" in app]
+        # return [app for app in website.settings.INSTALLED_APPS if not "django" in app]
+        # the same functionality, but more in "Python style" :
+        return [app for app in website.settings.INSTALLED_APPS if "django" not in app]
+
 
 
